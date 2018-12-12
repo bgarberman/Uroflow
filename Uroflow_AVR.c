@@ -17,9 +17,9 @@ ISR(ADC_VECT){
 }
 
 ISR(TIMER0_CAPT_vect){
+	//disable ADC
 	//open valve
 	//start timer 1
-	//disable ADC
 }
 
 ISR(TIMER1_OVERFLOW_vect){
