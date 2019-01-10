@@ -36,7 +36,7 @@ uint16_t movingAverage(uint16_t val) {
 
 
 void ADC_init(){
-	ADMUX &= 0x1F; //Clears lower 5 bits to choose ADC0
+	ADMUX &= ~0x1F; //Clears lower 5 bits to choose ADC0
 	ADMUX = _BV(REFS0); //Chooses reference voltage AREF & selects channel
 	ADCSRA = _BV(ADPS0) | _BV(ADPS1) | _BV(ADPS2); //Enable prescaler of 128
 	ADCSRA |= _BV(ADEN); //Enable ADC
