@@ -11,7 +11,7 @@
 
 
 uint16_t movingAverage(uint16_t val);
-void ADC_init(uint8_t channel);
+void ADC_init();
 void Timer0_init();
 void Timer1_init();
 void Timer3_init();
