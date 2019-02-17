@@ -20,6 +20,7 @@ int currentVal = 0;
 int lastVal = 0;
 int difference = 0;
 float derivative = 0;
+int index_last = 0;
 
 
 uint16_t movingAverage(uint16_t val) {
@@ -46,7 +47,6 @@ void ADC_init(){
 	memset(adc_window, 0x00, SAMPLE_SIZE * sizeof(unsigned int)); //Initializes moving average window
     unsigned int adc_window[WINDOW_SIZE];
     float adc_window_avg = 0;
-    int index_last = 0;
 
 }
 
