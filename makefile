@@ -1,6 +1,6 @@
 name = output
 device = /dev/tty.usbmodem1421
-src = Lab2_2_2.c
+src = Uroflow_AVR.c
 flags = -std=c11 -Os
 baud = 9600
 

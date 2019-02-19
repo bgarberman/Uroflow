@@ -1,8 +1,12 @@
 # Uroflow
 
-The In Home & Office Uroflowmetry Device, which has been nicknamed “Uroflow”, is an ongoing project with the pediatric urology department at the Children’s Hospital of Philadelphia. The goal is this project is to help combat lower urinary tract dysfunction in children.
+The In Home & Office Uroflowmetry Device is an ongoing project with the pediatric urology department at the Children’s Hospital of Philadelphia. The goal is this project is to help combat lower urinary tract dysfunction in children.
 
-This repository contains the prototype device's firmware, which reads, filters, processes, and transmits the data. The processor used is an ATMega32u4. It also contains the files used to test the device, which simulate various typical uroflows from patients with a water pump.
+This repository contains:
+
+1) The prototype device's firmware, which reads, filters, processes, and transmits the data, as well as handles the mechatronics.
+2) The files used to test the device, which simulate various typical uroflows from patients with a water pump.
+3) The KiCad PCB files for the prototype.
 
 The pin connections are as follows, for use with ATMega32u4: 
     
