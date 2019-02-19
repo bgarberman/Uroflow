@@ -25,29 +25,32 @@ int index_last = 0;
 
 uint16_t movingAverage(uint16_t val) {
 
-    adc_window_avg -= (adc_window[index_last] / (float) WINDOW_SIZE); //Removes last moving average value
+    adc_window_avg -= (adc_window[(index_last+1) % WINDOW_SIZE] / (float) WINDOW_SIZE); //Removes oldest window value
     adc_window_avg += (val / (float) WINDOW_SIZE); //Inserts new moving average value
 
     adc_window[index_last] = val; //Inserts new value into moving average window
 
-    index_last = ++index_last % WINDOW_SIZE; //Increment index
+    index_last = (index_last++) % WINDOW_SIZE; //Increment index
 
     return (uint16_t) adc_window_avg;
 }
 
+void movingAverageInit(){
+
+	memset(adc_window, 0x00, SAMPLE_SIZE * sizeof(unsigned int)); //Initializes moving average window
+    unsigned int adc_window[WINDOW_SIZE];
+    float adc_window_avg = 0;
+}
+
 
 void ADC_init(){
+
 	ADMUX &= ~0x1F; //Clears lower 5 bits to choose ADC0
 	ADMUX = _BV(REFS0); //Chooses reference voltage AREF & selects channel
 	ADCSRA = _BV(ADPS0) | _BV(ADPS1) | _BV(ADPS2); //Enable prescaler of 128
 	ADCSRA |= _BV(ADEN); //Enable ADC
 	ADCSRA |= _BV(ADIE) | _BV(ADATE); // ADC Interrupt enable & auto trigger enable
     ADCSRB = 0; //Free running mode
-
-	memset(adc_window, 0x00, SAMPLE_SIZE * sizeof(unsigned int)); //Initializes moving average window
-    unsigned int adc_window[WINDOW_SIZE];
-    float adc_window_avg = 0;
-
 }
 
 void Timer0_init(){ //Timer for flush
@@ -114,6 +117,7 @@ int main(void){
 	DDRC &= _CV(7) //Button input 
 	
 	ADC_init(0);
+	movingAverageInit();
 	uart_init();
 	Timer0_init();
 	Timer1_init();
